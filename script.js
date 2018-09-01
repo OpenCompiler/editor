@@ -7,7 +7,7 @@ var prog;
 
 var codeHash;
 
-var url = "//compiler.ugwis.net";
+var url = "//ws0.opencompiler.net";
 var debugUrl = "http://localhost:3000";
 
 var languages;
