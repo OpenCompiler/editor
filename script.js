@@ -197,7 +197,7 @@ function waitforready(callback){
 }
 
 window.onload = function(){
-	if(location.hostname !== "editor.ugwis.net"){
+	if(location.hostname !== "www.opencompiler.net"){
 		url = debugUrl;
 	}
 	codeHash = moment().unix();
