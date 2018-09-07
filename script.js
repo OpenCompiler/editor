@@ -23,7 +23,7 @@ function latest(obj){
 }
 
 function parse_response(str){
-	var ret = {};
+	var ret = {'stdout':'', 'stderr': '', 'stdoe': ''};
 	for(var line of str.split("\n")){
 		var sp = line.split(":");
 		var opt = sp[0];
@@ -31,6 +31,7 @@ function parse_response(str){
 		if(ret[opt] === undefined){
 			ret[opt] = "";
 		}
+		if(opt === "stdout" || opt === "stderr") ret['stdoe'] += s + "\n";
 		ret[opt] += s + "\n";
 	}
 	return ret;
@@ -151,7 +152,7 @@ function run(lang, code, callback){
 			stdout.setValue(resp.gcc);
 			error_parser(resp.gcc,lang);
 		} else {
-			stdout.setValue(resp.stdout);
+			stdout.setValue(resp.stdoe);
 		}
 	};
 	xhr.setRequestHeader( 'Content-Type', 'application/x-www-form-urlencoded' );
