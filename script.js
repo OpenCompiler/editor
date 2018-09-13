@@ -10,6 +10,7 @@ var codeHash;
 var debug = {
     "name": "localhost",
     "hostname": "localhost:3000",
+    "url": "https://en.wikipedia.org/wiki/Private_network",
     "score": 0
 }
 
@@ -19,6 +20,7 @@ var servers = [
     {
         "name": "OpenCompiler.net",
         "hostname": "ws0.opencompiler.net",
+        "url": "https://github.com/OpenCompiler/",
         "score": 0
     }
 ];
@@ -382,6 +384,10 @@ window.onload = function(){
 	document.getElementById("build-tag").classList.add("hidden");
 	document.getElementById("warning-tag").classList.add("hidden");
 	document.getElementById("server-tag").classList.add("hidden");
+	document.getElementById("server-tag").onclick = function(){
+		if(servers[0].url) window.open(servers[0].url);
+	}.bind(last_session);
+
 	if(('localStorage' in window) && (window.localStorage !== null) && localStorage.getItem('history') !== null){
 		var last_session = latest(JSON.parse(localStorage.getItem('history')));
 		if(last_session !== undefined){
