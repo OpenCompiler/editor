@@ -150,6 +150,8 @@ function run(lang, code, callback){
 	document.getElementById("run").classList.add("running");
 	document.getElementById("progressbar").style.width = "0%";
 	document.getElementById("progressbar").style.opacity = "1.0";
+	document.getElementById("server-tag").classList.remove("hidden");
+	document.querySelector("#server-tag > .text").innerText = servers[0].name;
 	xhr = new XMLHttpRequest();
 	if(prog === undefined) prog = setTimeout(progress(),0);
 	xhr.open("POST", "//" + servers[0].hostname + "/run", true);
@@ -174,10 +176,8 @@ function run(lang, code, callback){
 			if (xhr.readyState === 4) {
 			document.getElementById("run").classList.remove('running');
 			if (xhr.status >= 200 && xhr.status < 300) {
-				document.getElementById("server-tag").classList.remove("hidden");
 				document.getElementById("progressbar").style.width = "100%";
 				document.getElementById("progressbar").style.opacity = "0.0";
-				document.querySelector("#server-tag > .text").innerText = servers[0].name;
 				xhr = undefined;
 				callback(lang, code, callback);
 			} else if(xhr.status == 0) {
