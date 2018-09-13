@@ -178,6 +178,10 @@ input:focus , input:hover {
 	opacity: 0.8;
 }
 
+#server-tag {
+	background: #03A9F4;
+}
+
 .hidden {
 	display: none!important;
 }

@@ -7,10 +7,21 @@ var prog;
 
 var codeHash;
 
-var url = "//ws0.opencompiler.net";
-var debugUrl = "http://localhost:3000";
+var debug = {
+    "name": "localhost",
+    "hostname": "localhost:3000",
+    "score": 0
+}
 
 var languages;
+
+var servers = [
+    {
+        "name": "OpenCompiler.net",
+        "hostname": "ws0.opencompiler.net",
+        "score": 0
+    }
+];
 
 function latest(obj){
 	var arr = Object.keys(obj);
@@ -139,7 +150,7 @@ function run(lang, code, callback){
 	document.getElementById("progressbar").style.opacity = "1.0";
 	xhr = new XMLHttpRequest();
 	if(prog === undefined) prog = setTimeout(progress(),0);
-	xhr.open("POST", url + "/run", true);
+	xhr.open("POST", "//" + servers[0].hostname + "/run", true);
 	xhr.onprogress = function () {
 		console.log("PROGRESS:", xhr.responseText);
 		var resp = parse_response(xhr.responseText);
@@ -161,8 +172,10 @@ function run(lang, code, callback){
 			if (xhr.readyState === 4) {
 			document.getElementById("run").classList.remove('running');
 			if (xhr.status >= 200 && xhr.status < 300) {
+				document.getElementById("server-tag").classList.remove("hidden");
 				document.getElementById("progressbar").style.width = "100%";
 				document.getElementById("progressbar").style.opacity = "0.0";
+				document.querySelector("#server-tag > .text").innerText = servers[0].name;
 				xhr = undefined;
 				callback(lang, code, callback);
 			} else if(xhr.status == 0) {
@@ -182,7 +195,7 @@ function run(lang, code, callback){
 
 function waitforready(callback){
 	var xhr = new XMLHttpRequest();
-	xhr.open("GET", url + "/", true);
+	xhr.open("GET", "//" + servers[0].hostname + "/", true);
 	xhr.send(null);
 	xhr.onreadystatechange = function(){
 		if( xhr.readyState === 4 ){
@@ -199,7 +212,7 @@ function waitforready(callback){
 
 window.onload = function(){
 	if(location.hostname !== "www.opencompiler.net"){
-		url = debugUrl;
+		servers = [debug];
 	}
 	codeHash = moment().unix();
 	stdin = ace.edit("stdin");
@@ -368,6 +381,7 @@ window.onload = function(){
 	document.getElementById("modify-tag").classList.add("hidden");
 	document.getElementById("build-tag").classList.add("hidden");
 	document.getElementById("warning-tag").classList.add("hidden");
+	document.getElementById("server-tag").classList.add("hidden");
 	if(('localStorage' in window) && (window.localStorage !== null) && localStorage.getItem('history') !== null){
 		var last_session = latest(JSON.parse(localStorage.getItem('history')));
 		if(last_session !== undefined){
