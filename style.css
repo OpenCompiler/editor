@@ -180,6 +180,7 @@ input:focus , input:hover {
 
 #server-tag {
 	background: #0386F4;
+	cursor: pointer;
 }
 
 #server-tag:hover {
