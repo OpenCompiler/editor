@@ -152,6 +152,7 @@ function run(lang, code, callback){
 	document.getElementById("progressbar").style.opacity = "1.0";
 	document.getElementById("server-tag").classList.remove("hidden");
 	document.querySelector("#server-tag > .text").innerText = servers[0].name;
+	editor.getSession().setAnnotations([]);
 	xhr = new XMLHttpRequest();
 	if(prog === undefined) prog = setTimeout(progress(),0);
 	xhr.open("POST", "//" + servers[0].hostname + "/run", true);
