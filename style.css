@@ -37,6 +37,10 @@ body {
 	font-family:'Yu Gothic','Meiryo UI','Meiryo',sans-serif;
 }
 
+.ace_active-line {
+    background: rgba(0, 0, 0, 0.1)!important;
+}
+
 #toolbar span {
 	color:#FFF; 
 }

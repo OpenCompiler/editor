@@ -317,6 +317,37 @@ window.onload = function(){
 			localStorage.setItem('history', JSON.stringify(history));
 		}
 	});
+    stdin.on('input',function(){
+        var shouldShow = !stdin.session.getValue().length;
+        var node = stdin.renderer.emptyMessageNode;
+        if (!shouldShow && node) {
+            stdin.renderer.scroller.removeChild(stdin.renderer.emptyMessageNode);
+            stdin.renderer.emptyMessageNode = null;
+        } else if (shouldShow && !node) {
+            node = stdin.renderer.emptyMessageNode = document.createElement("div");
+            node.textContent = "Standard Input";
+            node.className = "ace_invisible ace_emptyMessage";
+            node.style.padding = "0 9px";
+            stdin.renderer.scroller.appendChild(node);
+        }
+    });
+    stdin._eventRegistry.input[0]()
+    stdout.on('input',function(){
+        var shouldShow = !stdout.session.getValue().length;
+        var node = stdout.renderer.emptyMessageNode;
+        if (!shouldShow && node) {
+            stdout.renderer.scroller.removeChild(stdout.renderer.emptyMessageNode);
+            stdout.renderer.emptyMessageNode = null;
+        } else if (shouldShow && !node) {
+            node = stdout.renderer.emptyMessageNode = document.createElement("div");
+            node.textContent = "Standard Output";
+            node.className = "ace_invisible ace_emptyMessage";
+            node.style.padding = "0 9px";
+            stdout.renderer.scroller.appendChild(node);
+        }
+    });
+    stdout._eventRegistry.input[0]()
+
 
 	//Load languages map
 	var xhr = new XMLHttpRequest();
