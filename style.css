@@ -41,6 +41,10 @@ body {
     background: rgba(0, 0, 0, 0.1)!important;
 }
 
+.ace_emptyMessage {
+    color: #868686!important;
+}
+
 #toolbar span {
 	color:#FFF; 
 }
