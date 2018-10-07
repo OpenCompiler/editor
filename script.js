@@ -37,7 +37,7 @@ function parse_response(str){
         if(ret[opt] === undefined){
             ret[opt] = "";
         }
-        if(opt === "stdout" || opt === "stderr") ret['stdoe'] += s + "\n";
+        if(opt === "stdout" || opt === "stderr") ret.stdoe += s + "\n";
         ret[opt] += s + "\n";
     }
     return ret;
