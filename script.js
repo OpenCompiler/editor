@@ -349,13 +349,13 @@ window.onload = function(){
                 option.text = i;
                 option.value = i;
                 document.getElementsByTagName("select")[0].appendChild(option);
-                waitforready(function(){
-                    document.getElementById("loading").style.opacity = "0";
-                    setTimeout(function(){
-                        document.getElementById("loading").style.display = "none";
-                    },2000);
-                });
             }
+            waitforready(function(){
+                document.getElementById("loading").style.opacity = "0";
+                setTimeout(function(){
+                    document.getElementById("loading").style.display = "none";
+                },2000);
+            });
         }
     };
 
