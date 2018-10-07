@@ -315,7 +315,7 @@ window.onload = function(){
             node = stdin.renderer.emptyMessageNode = document.createElement("div");
             node.textContent = "Standard Input";
             node.className = "ace_invisible ace_emptyMessage";
-            node.style.padding = "0 9px";
+            node.style.padding = "0 6px";
             stdin.renderer.scroller.appendChild(node);
         }
     });
