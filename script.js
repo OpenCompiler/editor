@@ -196,15 +196,15 @@ function waitforready(callback){
     xhr.onreadystatechange = function(){
         if( xhr.readyState === 4 && xhr.status === 200 ){
             servers = JSON.parse(xhr.responseText);
+            if(location.hostname !== "www.opencompiler.net"){
+                servers = [debug];
+            }
             callback();
         }
     };
 }
 
 window.onload = function(){
-    if(location.hostname !== "www.opencompiler.net"){
-        servers = [debug];
-    }
     codeHash = moment().unix();
     stdin = ace.edit("stdin");
     stdin.setTheme("ace/theme/monokai");
