@@ -16,14 +16,7 @@ var debug = {
 
 var languages;
 
-var servers = [
-    {
-        "name": "OpenCompiler.net",
-        "hostname": "ws0.opencompiler.net",
-        "url": "https://github.com/OpenCompiler/",
-        "score": 0
-    }
-];
+var servers = [];
 
 function latest(obj){
     var arr = Object.keys(obj);
@@ -198,17 +191,12 @@ function run(lang, code, callback){
 
 function waitforready(callback){
     var xhr = new XMLHttpRequest();
-    xhr.open("GET", "//" + servers[0].hostname + "/", true);
+    xhr.open("GET", "servers.json", true);
     xhr.send(null);
     xhr.onreadystatechange = function(){
-        if( xhr.readyState === 4 ){
-            if( xhr.status === 200 ){
-                callback();
-            } else {
-                setTimeout(function(){
-                    waitforready(callback);
-                },1000);
-            }
+        if( xhr.readyState === 4 && xhr.status === 200 ){
+            servers = JSON.parse(xhr.responseText);
+            callback();
         }
     };
 }
