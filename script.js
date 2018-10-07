@@ -12,7 +12,7 @@ var debug = {
     "hostname": "localhost:3000",
     "url": "https://en.wikipedia.org/wiki/Private_network",
     "score": 0
-}
+};
 
 var languages;
 
