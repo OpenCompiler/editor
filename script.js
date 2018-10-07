@@ -319,7 +319,7 @@ window.onload = function(){
             stdin.renderer.scroller.appendChild(node);
         }
     });
-    stdin._eventRegistry.input[0]()
+    stdin._eventRegistry.input[0]();
     stdout.on('input',function(){
         var shouldShow = !stdout.session.getValue().length;
         var node = stdout.renderer.emptyMessageNode;
@@ -334,7 +334,7 @@ window.onload = function(){
             stdout.renderer.scroller.appendChild(node);
         }
     });
-    stdout._eventRegistry.input[0]()
+    stdout._eventRegistry.input[0]();
 
 
     //Load languages map
