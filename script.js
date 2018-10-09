@@ -441,6 +441,14 @@ window.onload = function(){
     } else {
         document.getElementById("last-session-tag").classList.add("hidden");
     }
+    if(('localStorage' in window) && (window.localStorage !== null) && localStorage.getItem('user') !== null){
+        user = JSON.parse(localStorage.getItem('user'));
+        console.log(user.email);
+        LogRocket.identify(user.id, {
+          name: user.id,
+          email: user.email,
+        });
+    }
 };
 
 
