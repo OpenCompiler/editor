@@ -1,10 +1,5 @@
 [
 	{
-		"name": "ugwis.net",
-		"hostname": "compiler.ugwis.net",
-		"score": 0
-	},
-	{
 		"name": "OpenCompiler.net",
 		"hostname": "ws0.opencompiler.net",
 		"score": 0
