@@ -213,7 +213,7 @@ window.onload = function(){
     stdout.setTheme("ace/theme/monokai");
     stdout.setShowPrintMargin(false);
     editor = ace.edit("editor");
-    editor.setValue("#include <bits/stdc++.h>\n\nusing namespace std;\n\nint main(){\n  \n  \n  return 0;\n}");
+    editor.setValue("#include <bits/stdc++.h>\n\nusing namespace std;\n\nint main(){\n\t\n\t\n\treturn 0;\n}");
     editor.setTheme("ace/theme/monokai");
     editor.getSession().setMode("ace/mode/c_cpp");
     editor.getSession().setUseSoftTabs(false);
