@@ -160,6 +160,10 @@ function run(lang, code, callback){
         } else if(resp.gcc){
             stdout.setValue(resp.gcc);
             error_parser(resp.gcc,lang);
+        } else if(resp.go){
+            stdout.setValue(resp.go);
+        } else if(resp.rustc){
+            stdout.setValue(resp.rustc);
         } else {
             stdout.setValue(resp.stdoe);
         }
