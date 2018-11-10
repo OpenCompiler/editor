@@ -267,6 +267,8 @@ window.onload = function(){
     });
     var precompile_timer;
     editor.on('change', function(){
+        var lang = document.getElementById("language-select").options[document.getElementById("language-select").selectedIndex].innerText;
+        languages[lang].code = editor.getValue();
         document.getElementById("build-tag").classList.add('hidden');
         document.getElementById("modify-tag").classList.remove('hidden');
         if(('localStorage' in window) && (window.localStorage !== null)){
