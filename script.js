@@ -249,7 +249,7 @@ window.onload = function(){
     var func_run = function(callback){
         var lang = document.getElementById("language-select").options[document.getElementById("language-select").selectedIndex].innerText;
         console.log(lang);
-        console.log(langyages);
+        console.log(languages);
         run(
             languages[lang].identifier, 
             editor.getValue(),
