@@ -1,4 +1,5 @@
-﻿var editor;
+﻿/*jshint·esversion:·6·*/
+var editor;
 var stdin;
 var stdout;
 var confirmer;
