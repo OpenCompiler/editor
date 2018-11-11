@@ -200,6 +200,11 @@ function waitforready(callback){
     xhr.onreadystatechange = function(){
         if( xhr.readyState === 4 && xhr.status === 200 ){
             servers = JSON.parse(xhr.responseText);
+            servers.sort(function(a,b){
+                if(a.score > b.score) return -1;
+                if(a.score < b.score) return 1;
+                return 0;
+            });
             if(location.hostname !== "www.opencompiler.net"){
                 servers = [debug];
             }
