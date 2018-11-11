@@ -34,7 +34,7 @@
 body {
 	margin:0px;
 	background:#101010;
-	font-family:'Yu Gothic','Meiryo UI','Meiryo',sans-serif;
+	font-family:'Yu Gothic','Meiryo UI','Meiryo',Helvetica,sans-serif;
 }
 
 .ace_active-line {
