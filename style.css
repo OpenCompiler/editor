@@ -201,11 +201,12 @@ input:focus , input:hover {
     color: #cdcdcd;
 	display: inline-block;
 	border-radius: 3px;
-	padding: 3px 0px 3px 7px;
+	padding: 0px 0px 0px 7px;
+    line-height: 1.8em;
 }
 
 .tag2 > .text {
-	padding: 3px 7px;
+	padding: 0.39em 7px;
 	background: #404140;
 	border-radius: 0px 3px 3px 0px;
 	margin-left: 3px;
