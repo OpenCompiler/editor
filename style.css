@@ -34,7 +34,7 @@
 body {
 	margin:0px;
 	background:#101010;
-	font-family:'Yu Gothic','Meiryo UI','Meiryo',Helvetica,sans-serif;
+	font-family:'Open Sans',Helvetica,sans-serif;
 }
 
 .ace_active-line {
@@ -176,23 +176,29 @@ input:focus , input:hover {
 
 #build-tag {
 	background: #235770;
-    padding: 3px 7px;
+    padding: 0px 7px;
     border-radius: 3px;
     color: #cdcdcd;
+    display: inline-block;
+    line-height: 1.8em;
 }
 
 #modify-tag {
 	background: #2f7023;
-    padding: 3px 7px;
+    padding: 0px 7px;
     border-radius: 3px;
     color: #cdcdcd;
+    display: inline-block;
+    line-height: 1.8em;
 }
 
 #warning-tag {
 	background: #970000;
-    padding: 3px 7px;
+    padding: 0px 7px;
     border-radius: 3px;
     color: #cdcdcd;
+    display: inline-block;
+    line-height: 1.8em;
 }
 
 .tag2 {
@@ -206,7 +212,8 @@ input:focus , input:hover {
 }
 
 .tag2 > .text {
-	padding: 0.39em 7px;
+    display: inline-block;
+	padding: 0px 7px;
 	background: #404140;
 	border-radius: 0px 3px 3px 0px;
 	margin-left: 3px;
