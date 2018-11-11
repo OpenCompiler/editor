@@ -15,6 +15,8 @@ var debug = {
     "score": 0
 };
 
+var servers_url = "https://api.opencompiler.net/servers";
+
 var languages;
 
 var servers = [];
@@ -195,23 +197,25 @@ function run(lang, code, callback){
 }
 
 function waitforready(callback){
-    var xhr = new XMLHttpRequest();
-    xhr.open("GET", "servers.json", true);
-    xhr.send(null);
-    xhr.onreadystatechange = function(){
-        if( xhr.readyState === 4 && xhr.status === 200 ){
-            servers = JSON.parse(xhr.responseText);
-            servers.sort(function(a,b){
-                if(a.score > b.score) return -1;
-                if(a.score < b.score) return 1;
-                return 0;
-            });
-            if(location.hostname !== "www.opencompiler.net"){
-                servers = [debug];
+    if(location.hostname !== "www.opencompiler.net"){
+        servers = [debug];
+        callback();
+    } else {
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", servers_url, true);
+        xhr.send(null);
+        xhr.onreadystatechange = function(){
+            if( xhr.readyState === 4 && xhr.status === 200 ){
+                servers = JSON.parse(xhr.responseText);
+                servers.sort(function(a,b){
+                    if(a.score > b.score) return -1;
+                    if(a.score < b.score) return 1;
+                    return 0;
+                });
+                callback();
             }
-            callback();
-        }
-    };
+        };
+    }
 }
 
 window.onload = function(){
