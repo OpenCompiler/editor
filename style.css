@@ -31,6 +31,30 @@
   font-size:130%;
 }
 
+@media screen and (max-width: 400px) {
+    #editor {
+        width:100%!important;
+        height:calc(70vh - 43px - 1.5px)!important;
+    }
+    #stdio {
+        width: 100%!important;
+        height: 30vh!important;
+    }
+    #separator {
+        display: none;
+    }
+    #stdin {
+        width: 50%;
+        height: 30vh!important;
+        float:left;
+    }
+    #stdout {
+        width: 50%;
+        height: 30vh!important;
+        float:right;
+    }
+}
+
 body {
 	margin:0px;
 	background:#101010;
