@@ -306,6 +306,9 @@ window.onload = function(){
         if(precompile_timer) clearTimeout(precompile_timer);
         precompile_timer = setTimeout(pre_compile, 5000);
     });
+    stdin.on('focus', function(){
+        document.body.scrollTop = document.body.scrollHeight;
+    });
     stdin.on('change', function(){
         if(('localStorage' in window) && (window.localStorage !== null)){
             var history = JSON.parse(localStorage.getItem("history"));
@@ -338,6 +341,9 @@ window.onload = function(){
         }
     });
     stdin._eventRegistry.input[0]();
+    stdout.on('focus', function(){
+        document.body.scrollTop = document.body.scrollHeight;
+    });
     stdout.on('input',function(){
         var shouldShow = !stdout.session.getValue().length;
         var node = stdout.renderer.emptyMessageNode;
