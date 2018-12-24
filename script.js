@@ -224,6 +224,7 @@ window.onload = function(){
     stdin.setTheme("ace/theme/monokai");
     stdin.setShowPrintMargin(false);
     stdout = ace.edit("stdout");
+    stdout.setReadOnly(true);
     stdout.setTheme("ace/theme/monokai");
     stdout.setShowPrintMargin(false);
     editor = ace.edit("editor");
