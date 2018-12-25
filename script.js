@@ -342,6 +342,9 @@ window.onload = function(){
         }
     });
     stdin._eventRegistry.input[0]();
+    tippy('#stdout', {
+        content: document.getElementById('tip')
+    })
     stdout.on('focus', function(){
         document.body.scrollTop = document.body.scrollHeight;
     });

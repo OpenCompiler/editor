@@ -18,6 +18,7 @@
 		<script>window.LogRocket && window.LogRocket.init('mmobh0/online-editor');</script>
 		<!-- Global site tag (gtag.js) - Google Analytics -->
 		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-111027808-1"></script>
+        <script src="https://unpkg.com/tippy.js@3/dist/tippy.all.min.js"></script>
 		<script>
 		  window.dataLayer = window.dataLayer || [];
 		  function gtag(){dataLayer.push(arguments);}
@@ -28,12 +29,12 @@
 	</head>
 	<body>
 		<div id="toolbar">
-			<button id="run" class="lsf-icon" title="play"></button>
-			<div class="selectWrap">
+			<button id="run" class="lsf-icon" title="play" data-tippy="Execute your code"></button>
+			<div class="selectWrap" data-tippy="Choose your code language">
 				<select id="language-select">
 				</select>
 			</div>
-			<span id="server-tag" class="tag2">
+			<span id="server-tag" class="tag2" data-tippy="The site build your code">
 				Server
 				<div class="text"></div>
 			</span>
@@ -41,7 +42,7 @@
 				Last Session
 				<div class="text"></div>
 			</span>
-			<span id="modify-tag">Modified</span>
+			<span id="modify-tag" data-tippy="Your code is modified from last execute">Modified</span>
 			<span id="build-tag">Built</span>
 			<span id="warning-tag">Warning</span>
 			<div id="progressbar"></div>
@@ -51,6 +52,10 @@
 		<div id="stdio">
 			<div id="stdin"></div>
 			<div id="stdout"></div>
+            <div id="tip">
+                <p>Open Compiler doesn't support for interactive shell</p>
+                <img src="./tip.png" width="300">
+            </div>
 		</div>
 		<div id="modal-wrap" class="hidden" style="opacity: 0.0">
 			<div id="modal">
