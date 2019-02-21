@@ -258,7 +258,7 @@ window.onload = function(){
     });
 
     var func_run = function(callback){
-        var lang = document.getElementById("language-select").options[document.getElementById("language-select").selectedIndex].innerText;
+        var lang = document.getElementById("language-select").options[document.getElementById("language-select").selectedIndex].text;
         console.log(lang);
         console.log(languages);
         run(
@@ -278,7 +278,7 @@ window.onload = function(){
     });
     var precompile_timer;
     editor.on('change', function(){
-        var lang = document.getElementById("language-select").options[document.getElementById("language-select").selectedIndex].innerText;
+        var lang = document.getElementById("language-select").options[document.getElementById("language-select").selectedIndex].text;
         languages[lang].code = editor.getValue();
         document.getElementById("build-tag").classList.add('hidden');
         document.getElementById("modify-tag").classList.remove('hidden');
@@ -287,7 +287,7 @@ window.onload = function(){
             if(history === null || history === undefined){
                 history = {};
             }
-            var lang_name = document.getElementById("language-select").options[document.getElementById("language-select").selectedIndex].innerText;
+            var lang_name = document.getElementById("language-select").options[document.getElementById("language-select").selectedIndex].text;
             var cont = {
                 'date': moment(),
                 'code': editor.getValue(),
@@ -316,7 +316,7 @@ window.onload = function(){
             if(history === null || history === undefined){
                 history = {};
             }
-            var lang_name = document.getElementById("language-select").options[document.getElementById("language-select").selectedIndex].innerText;
+            var lang_name = document.getElementById("language-select").options[document.getElementById("language-select").selectedIndex].text;
             var cont = {
                 'date': moment(),
                 'code': editor.getValue(),
@@ -402,7 +402,7 @@ window.onload = function(){
     };
 
     document.getElementById("language-select").onchange = function(event){
-        var lang = document.getElementById("language-select").options[document.getElementById("language-select").selectedIndex].innerText;
+        var lang = document.getElementById("language-select").options[document.getElementById("language-select").selectedIndex].text;
         console.log(lang);
         editor.getSession().setMode(languages[lang].mode);
         editor.setValue(languages[lang].code);
