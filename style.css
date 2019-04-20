@@ -425,7 +425,6 @@ input:focus , input:hover {
 	margin: 0px auto;
 	top: 50%;
 	position: relative;
-	box-shadow: 0px 0px 5px #5fbcc8;
 	margin-top: -200px;
 }
 
