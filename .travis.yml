@@ -11,7 +11,7 @@ deploy:
   script: aws s3 sync . s3://www-opencompiler-net --region=ap-northeast-1 --delete
   skip_cleanup: true
   on:
-    branch: master
+    branch: deploy
 after_deploy:
   - aws configure set preview.cloudfront true
   - aws cloudfront create-invalidation --distribution-id "E288A1TVL2TI12" --paths "/*"
