@@ -1,7 +1,7 @@
 {
-  "C++17": {
+  "C++15": {
     "mode": "ace/mode/c_cpp",
-    "identifier": "cpp17",
+    "identifier": "cpp15",
     "code": "#include <bits/stdc++.h>\n\nusing namespace std;\n\nint main(){\n\t//cout << \"Hello,World\" << endl;\n\t\n\treturn 0;\n}"
   }
 }
