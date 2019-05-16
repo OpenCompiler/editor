@@ -31,7 +31,7 @@
   font-size:130%;
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 500px) {
     #editor {
         width:100%!important;
         height:calc(70vh - 43px - 1.5px)!important;
