@@ -198,6 +198,16 @@ input:focus , input:hover {
 	background: #777;
 }
 
+#beta-tag {
+  background: transparent;
+  padding: 0px 7px;
+  border-radius: 3px;
+  color: #beffd3 !important;
+  display: inline-block;
+  line-height: 1.8em;
+  border: 1px solid #21fb68;
+}
+
 #build-tag {
 	background: #235770;
     padding: 0px 7px;

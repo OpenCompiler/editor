@@ -15,6 +15,14 @@ var debug = {
     "score": 0
 };
 
+var beta = {
+    "name": "OpenCompiler(beta)",
+    "hostname": "api.opencompiler.net",
+    "url": "https://github.com/OpenCompiler/",
+    "score": 0
+};
+
+
 var servers_url = "https://api.opencompiler.net/servers";
 
 var languages;
@@ -197,10 +205,7 @@ function run(lang, code, callback){
 }
 
 function waitforready(callback){
-    if(location.hostname !== "www.opencompiler.net"){
-        servers = [debug];
-        callback();
-    } else {
+    if(location.hostname === "www.opencompiler.net"){
         var xhr = new XMLHttpRequest();
         xhr.open("GET", servers_url, true);
         xhr.send(null);
@@ -215,6 +220,13 @@ function waitforready(callback){
                 callback();
             }
         };
+    } else if(location.hostname === "beta.opencompiler.net"){
+        servers = [beta];
+        document.getElementById("beta-tag").classList.remove('hidden');
+        callback();
+    } else {
+        servers = [debug];
+        callback();
     }
 }
 
@@ -344,7 +356,7 @@ window.onload = function(){
     stdin._eventRegistry.input[0]();
     tippy('#stdout', {
         content: document.getElementById('tip')
-    })
+    });
     stdout.on('focus', function(){
         document.body.scrollTop = document.body.scrollHeight;
     });
@@ -428,6 +440,7 @@ window.onload = function(){
         }
     };
 
+    document.getElementById("beta-tag").classList.add("hidden");
     document.getElementById("modify-tag").classList.add("hidden");
     document.getElementById("build-tag").classList.add("hidden");
     document.getElementById("warning-tag").classList.add("hidden");

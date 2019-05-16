@@ -1,62 +1,7 @@
 {
-	"C++17": {
-		"mode": "ace/mode/c_cpp",
-		"identifier": "cpp17",
-		"code": "#include <bits/stdc++.h>\n\nusing namespace std;\n\nint main(){\n\t//cout << \"Hello,World\" << endl;\n\t\n\treturn 0;\n}"
-	},
-	"C++14": {
-		"mode": "ace/mode/c_cpp",
-		"identifier": "cpp14",
-		"code": "#include <bits/stdc++.h>\n\nusing namespace std;\n\nint main(){\n\t//cout << \"Hello,World\" << endl;\n\t\n\treturn 0;\n}"
-	},
-	"C++11": {
-		"mode": "ace/mode/c_cpp",
-		"identifier": "cpp11",
-		"code": "#include <bits/stdc++.h>\n\nusing namespace std;\n\nint main(){\n\t//cout << \"Hello,World\" << endl;\n\t\n\treturn 0;\n}"
-	},
-	"C++": {
-		"mode": "ace/mode/c_cpp",
-		"identifier": "cpp",
-		"code": "#include <bits/stdc++.h>\n\nusing namespace std;\n\nint main(){\n\t//cout << \"Hello,World\" << endl;\n\t\n\treturn 0;\n}"
-	},
-	"C": {
-		"mode": "ace/mode/c_cpp",
-		"identifier": "c",
-		"code": "#include <stdio.h>\n\nint main(){\n\t//printf(\"Hello,world\\n\");\n\t\n\treturn 0;\n}"
-	},
-	"Python": {
-		"mode": "ace/mode/python",
-		"identifier": "python",
-		"code": "print(\"Hello,World\")"
-	},
-	"Python2": {
-		"mode": "ace/mode/python",
-		"identifier": "python2",
-		"code": "print \"Hello,World\""
-	},
-	"PHP": {
-		"mode": "ace/mode/php",
-		"identifier": "php",
-		"code": "<?php\nprint(\"Hello,World\");\n?>"
-	},
-	"Bash": {
-		"mode": "ace/mode/bash",
-		"identifier": "bash",
-		"code": "echo Hello,World"
-	},
-	"Rust": {
-		"mode": "ace/mode/rust",
-		"identifier": "rust",
-		"code": "fn main() {\n\tprintln!(\"Hello World!\");\n}"
-	},
-	"Golang": {
-		"mode": "ace/mode/golang",
-		"identifier": "golang",
-		"code": "package main\nimport \"fmt\"\n\nfunc main() {\n\tfmt.Printf(\"Hello World\\n\")\n}"
-	},
-	"JavaScript": {
-		"mode": "ace/mode/javascript",
-		"identifier": "node",
-		"code": "console.log(\"Hello World!\");"
-	}
+  "C++17": {
+    "mode": "ace/mode/c_cpp",
+    "identifier": "cpp17",
+    "code": "#include <bits/stdc++.h>\n\nusing namespace std;\n\nint main(){\n\t//cout << \"Hello,World\" << endl;\n\t\n\treturn 0;\n}"
+  }
 }
