@@ -239,6 +239,7 @@ window.onload = function(){
     stdout.setReadOnly(true);
     stdout.setTheme("ace/theme/monokai");
     stdout.setShowPrintMargin(false);
+    stdout.setOption("wrap", true)
     editor = ace.edit("editor");
     editor.setValue("#include <bits/stdc++.h>\n\nusing namespace std;\n\nint main(){\n\t//cout << \"Hello,World!\" << endl;\n\t\n\t\n\treturn 0;\n}");
     editor.setTheme("ace/theme/monokai");
