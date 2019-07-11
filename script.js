@@ -239,7 +239,7 @@ window.onload = function(){
     stdout.setReadOnly(true);
     stdout.setTheme("ace/theme/monokai");
     stdout.setShowPrintMargin(false);
-    stdout.setOption("wrap", true)
+    stdout.setOption("wrap", true);
     editor = ace.edit("editor");
     editor.setValue("#include <bits/stdc++.h>\n\nusing namespace std;\n\nint main(){\n\t//cout << \"Hello,World!\" << endl;\n\t\n\t\n\treturn 0;\n}");
     editor.setTheme("ace/theme/monokai");
@@ -289,6 +289,13 @@ window.onload = function(){
             });
         }
     });*/
+    document.onkeydown = function(e){
+      if((e.ctrlKey || e.metaKey) && e.which == 82){//Ctrl + R
+        e.preventDefault();
+        func_run(function(){
+        });
+      }
+    };
     var precompile_timer;
     editor.on('change', function(){
         var lang = document.getElementById("language-select").options[document.getElementById("language-select").selectedIndex].text;
@@ -492,13 +499,6 @@ window.onload = function(){
         });
     }
 };
-
-document.onkeyup = function(e){
-  if(e.ctrlKey && e.which == 82){//Ctrl + R
-    func_run(function(){
-    });
-  }
-}
 
 window.addEventListener('beforeunload', function(e) {
     e.returnValue = 'ソースコードは保存されません。このページを離れてもいいですか？';
