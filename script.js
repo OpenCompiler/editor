@@ -280,7 +280,7 @@ window.onload = function(){
             callback
         );
     };
-    editor.commands.addCommand({
+    /*editor.commands.addCommand({
         name: 'Run',
         bindKey: {win: 'Ctrl-R', mac: 'Command-R'},
         exec: function(edtior){
@@ -288,7 +288,7 @@ window.onload = function(){
 
             });
         }
-    });
+    });*/
     var precompile_timer;
     editor.on('change', function(){
         var lang = document.getElementById("language-select").options[document.getElementById("language-select").selectedIndex].text;
@@ -493,7 +493,12 @@ window.onload = function(){
     }
 };
 
-
+document.onkeyup = function(e){
+  if(e.ctrlKey && e.which == 82){//Ctrl + R
+    func_run(function(){
+    });
+  }
+}
 
 window.addEventListener('beforeunload', function(e) {
     e.returnValue = 'ソースコードは保存されません。このページを離れてもいいですか？';
