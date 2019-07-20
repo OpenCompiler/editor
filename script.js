@@ -147,16 +147,18 @@ function error_parser(s,lang){
 
 }
 
-function run(lang, code, callback){
+function run(lang, code, explicit, callback){
     if(xhr) return;
     if(callback === undefined) callback = function(){};
-    document.getElementById("warning-tag").classList.add('hidden');
-    document.getElementById("run").classList.add("running");
-    document.getElementById("progressbar").style.width = "0%";
-    document.getElementById("progressbar").style.opacity = "1.0";
-    document.getElementById("server-tag").classList.remove("hidden");
-    document.querySelector("#server-tag > .text").innerText = servers[0].name;
-    editor.getSession().setAnnotations([]);
+    if(explicit){
+        document.getElementById("warning-tag").classList.add('hidden');
+        document.getElementById("run").classList.add("running");
+        document.getElementById("progressbar").style.width = "0%";
+        document.getElementById("progressbar").style.opacity = "1.0";
+        document.getElementById("server-tag").classList.remove("hidden");
+        document.querySelector("#server-tag > .text").innerText = servers[0].name;
+        editor.getSession().setAnnotations([]);
+    }
     xhr = new XMLHttpRequest();
     if(prog === undefined) prog = setTimeout(progress(),0);
     xhr.open("POST", "//" + servers[0].hostname + "/run/gcc/latest", true);
@@ -182,23 +184,23 @@ function run(lang, code, callback){
     xhr.setRequestHeader( 'Content-Type', 'application/x-www-form-urlencoded' );
     xhr.onreadystatechange = function(e) {
         console.log(xhr.readyState);
-            if (xhr.readyState === 4) {
-            document.getElementById("run").classList.remove('running');
-            if (xhr.status >= 200 && xhr.status < 300) {
-                document.getElementById("progressbar").style.width = "100%";
-                document.getElementById("progressbar").style.opacity = "0.0";
-                xhr = undefined;
-                callback(lang, code, callback);
-            } else if(xhr.status == 0) {
-                document.getElementById("warning-tag").classList.remove('hidden');
-                document.getElementById("warning-tag").innerText = "Server response not received.";
-                document.getElementById("progressbar").style.opacity = "0.0";
-                xhr = undefined;
-            } else {
-                document.getElementById("warning-tag").classList.remove('hidden');
-                document.getElementById("warning-tag").innerText = xhr.responseText;
-                xhr = undefined;
+        if (xhr.readyState === 4) {
+            if (explicit){
+                document.getElementById("run").classList.remove('running');
+                if (xhr.status >= 200 && xhr.status < 300) {
+                    document.getElementById("progressbar").style.width = "100%";
+                    document.getElementById("progressbar").style.opacity = "0.0";
+                    callback(lang, code, callback);
+                } else if(xhr.status == 0) {
+                    document.getElementById("warning-tag").classList.remove('hidden');
+                    document.getElementById("warning-tag").innerText = "Server response not received.";
+                    document.getElementById("progressbar").style.opacity = "0.0";
+                } else {
+                    document.getElementById("warning-tag").classList.remove('hidden');
+                    document.getElementById("warning-tag").innerText = xhr.responseText;
+                }
             }
+            xhr = undefined;
         }
     };
     xhr.send(JSON.stringify({language: lang, code: code, stdin: stdin.getValue()}));
@@ -270,13 +272,14 @@ window.onload = function(){
         fontSize: "12px",
     });
 
-    var func_run = function(callback){
+    var func_run = function(explicit, callback){
         var lang = document.getElementById("language-select").options[document.getElementById("language-select").selectedIndex].text;
         console.log(lang);
         console.log(languages);
         run(
             languages[lang].identifier, 
             editor.getValue(),
+            explicit,
             callback
         );
     };
@@ -292,7 +295,7 @@ window.onload = function(){
     document.onkeydown = function(e){
       if((e.ctrlKey || e.metaKey) && e.which == 82){//Ctrl + R
         e.preventDefault();
-        func_run(function(){
+        func_run(true, function(){
         });
       }
     };
@@ -442,7 +445,7 @@ window.onload = function(){
         if(document.getElementById("run").classList.contains("running")) {
             document.getElementById("run").classList.remove("running");
         } else {
-            func_run(function(){
+            func_run(true, function(){
 
             });
         }
@@ -498,6 +501,7 @@ window.onload = function(){
           email: user.email,
         });
     }
+    func_run(false, function(){});
 };
 
 window.addEventListener('beforeunload', function(e) {
