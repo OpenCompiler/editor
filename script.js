@@ -159,7 +159,7 @@ function run(lang, code, callback){
     editor.getSession().setAnnotations([]);
     xhr = new XMLHttpRequest();
     if(prog === undefined) prog = setTimeout(progress(),0);
-    xhr.open("POST", "//" + servers[0].hostname + "/run", true);
+    xhr.open("POST", "//" + servers[0].hostname + "/run/gcc/latest", true);
     xhr.onprogress = function () {
         console.log("PROGRESS:", xhr.responseText);
         var resp = parse_response(xhr.responseText);
