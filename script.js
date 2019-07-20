@@ -501,7 +501,9 @@ window.onload = function(){
           email: user.email,
         });
     }
-    func_run(false, function(){});
+    setTimeout(function(){
+      func_run(false, function(){});
+    },1000);
 };
 
 window.addEventListener('beforeunload', function(e) {
