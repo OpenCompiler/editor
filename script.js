@@ -421,7 +421,6 @@ window.onload = function(){
             }
         };
     } else {
-        languages = JSON.parse(xhr.responseText);
         for(var i in languages){
             var option = document.createElement("option");
             option.text = i;
