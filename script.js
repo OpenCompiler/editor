@@ -421,7 +421,9 @@ window.onload = function(){
             }
         };
     } else {
+        console.log(languages);
         for(var i in languages){
+            console.log(i);
             var option = document.createElement("option");
             option.text = i;
             option.value = i;
