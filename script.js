@@ -25,7 +25,16 @@ var beta = {
 
 var servers_url = "https://api.opencompiler.net/servers";
 
-var languages;
+var languages = {
+    "C++15": {
+        "mode": "ace/mode/c_cpp",
+        "identifier": "cpp15",
+        "code": "#include <bits/stdc++.h>\n\nusing namespace std;\n\nint main(){\n\t//cout << \"Hello,World\" << endl;\n\t\n\treturn 0;\n}",
+        "prefix": "/run/gcc/latest"
+    }
+};
+
+
 
 var servers = [];
 
@@ -389,26 +398,28 @@ window.onload = function(){
 
 
     //Load languages map
-    var xhr = new XMLHttpRequest();
-    xhr.open("GET", "languages.json", true);
-    xhr.send(null);
-    xhr.onreadystatechange = function(){
-        if( xhr.readyState === 4 && xhr.status === 200 ){
-            languages = JSON.parse(xhr.responseText);
-            for(var i in languages){
-                var option = document.createElement("option");
-                option.text = i;
-                option.value = i;
-                document.getElementsByTagName("select")[0].appendChild(option);
+    if (location.hostname === "www.opencompiler.net"){
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "languages.json", true);
+        xhr.send(null);
+        xhr.onreadystatechange = function(){
+            if( xhr.readyState === 4 && xhr.status === 200 ){
+                languages = JSON.parse(xhr.responseText);
+                for(var i in languages){
+                    var option = document.createElement("option");
+                    option.text = i;
+                    option.value = i;
+                    document.getElementsByTagName("select")[0].appendChild(option);
+                }
+                waitforready(function(){
+                    document.getElementById("loading").style.opacity = "0";
+                    setTimeout(function(){
+                        document.getElementById("loading").style.display = "none";
+                    },2000);
+                });
             }
-            waitforready(function(){
-                document.getElementById("loading").style.opacity = "0";
-                setTimeout(function(){
-                    document.getElementById("loading").style.display = "none";
-                },2000);
-            });
-        }
-    };
+        };
+    }
 
     var moving = false;
     document.body.onmouseup = function(event){
