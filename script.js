@@ -420,6 +420,20 @@ window.onload = function(){
                 });
             }
         };
+    } else {
+        languages = JSON.parse(xhr.responseText);
+        for(var i in languages){
+            var option = document.createElement("option");
+            option.text = i;
+            option.value = i;
+            document.getElementsByTagName("select")[0].appendChild(option);
+        }
+        waitforready(function(){
+            document.getElementById("loading").style.opacity = "0";
+            setTimeout(function(){
+                document.getElementById("loading").style.display = "none";
+            },2000);
+        });
     }
 
     var moving = false;
