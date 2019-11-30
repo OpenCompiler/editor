@@ -170,7 +170,8 @@ function run(lang, code, explicit, callback){
     }
     xhr = new XMLHttpRequest();
     if(prog === undefined) prog = setTimeout(progress(),0);
-    xhr.open("POST", "//" + servers[0].hostname + "/run/gcc/latest", true);
+    var prefix = languages[lang].prefix;
+    xhr.open("POST", "//" + servers[0].hostname + prefix, true);
     xhr.onprogress = function () {
         console.log("PROGRESS:", xhr.responseText);
         var resp = parse_response(xhr.responseText);

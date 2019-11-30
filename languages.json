@@ -71,3 +71,4 @@
 		"code": "console.log(\"Hello World!\");",
 		"prefix": "/run"
 	}
+}
