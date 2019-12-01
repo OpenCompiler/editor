@@ -170,19 +170,19 @@ function run(lang, code, explicit, callback){
     }
     xhr = new XMLHttpRequest();
     if(prog === undefined) prog = setTimeout(progress(),0);
-    var prefix = languages[lang].prefix;
+    var prefix = lang.prefix;
     xhr.open("POST", "//" + servers[0].hostname + prefix, true);
     xhr.onprogress = function () {
         console.log("PROGRESS:", xhr.responseText);
         var resp = parse_response(xhr.responseText);
         console.log(resp);
-        console.log(lang);
+        console.log(lang.identifier);
         if(resp["g++"]){
             stdout.setValue(resp["g++"]);
-            error_parser(resp["g++"],lang);
+            error_parser(resp["g++"],lang.identifier);
         } else if(resp.gcc){
             stdout.setValue(resp.gcc);
-            error_parser(resp.gcc,lang);
+            error_parser(resp.gcc,lang.identifier);
         } else if(resp.go){
             stdout.setValue(resp.go);
         } else if(resp.rustc){
@@ -200,7 +200,7 @@ function run(lang, code, explicit, callback){
                 if (xhr.status >= 200 && xhr.status < 300) {
                     document.getElementById("progressbar").style.width = "100%";
                     document.getElementById("progressbar").style.opacity = "0.0";
-                    callback(lang, code, callback);
+                    callback(lang.identifier, code, callback);
                 } else if(xhr.status == 0) {
                     document.getElementById("warning-tag").classList.remove('hidden');
                     document.getElementById("warning-tag").innerText = "Server response not received.";
@@ -213,7 +213,7 @@ function run(lang, code, explicit, callback){
             xhr = undefined;
         }
     };
-    xhr.send(JSON.stringify({language: lang, code: code, stdin: stdin.getValue()}));
+    xhr.send(JSON.stringify({language: lang.identifier, code: code, stdin: stdin.getValue()}));
 }
 
 function waitforready(callback){
@@ -287,7 +287,7 @@ window.onload = function(){
         console.log(lang);
         console.log(languages);
         run(
-            languages[lang].identifier, 
+            languages[lang],
             editor.getValue(),
             explicit,
             callback
@@ -419,7 +419,7 @@ window.onload = function(){
                     },2000);
                 });
             }
-        };
+        }
     } else {
         console.log(languages);
         for(var i in languages){
