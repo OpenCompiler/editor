@@ -9,14 +9,13 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - name: Upload S3
-      uses: peter-evans/s3-backup@v1.0.0
+    - name: S3 Upload
+      uses: jakejarvis/s3-sync-action@master
       env:
-        ACCESS_KEY_ID: ${{ secrets.ACCESS_KEY_ID }}
-        SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS_KEY }}
-        MIRROR_TARGET: www-opencompiler-net/
-      with:
-        args: --overwrite --remove
+        AWS_S3_BUCKET: 'www-opencompiler-net'
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        AWS_REGION: 'ap-northeast-1'   # optional: defaults to us-east-1
     - name: CloudFront(E288A1TVL2TI12) Cache Invalidation
       uses: chetan/invalidate-cloudfront-action@master
       env:
