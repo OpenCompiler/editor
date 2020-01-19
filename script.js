@@ -9,8 +9,8 @@ var prog;
 var codeHash;
 
 var debug = {
-    "name": "localhost",
-    "hostname": "localhost:3000",
+    "name": "Debug API",
+    "hostname": "debug.opencompiler.net",
     "url": "https://en.wikipedia.org/wiki/Private_network",
     "score": 0
 };
@@ -191,6 +191,10 @@ function run(lang, code, explicit, callback){
             stdout.setValue(resp.stdoe);
         }
     };
+    xhr.timeout = 5000;
+    xhr.ontimeout = function(){
+        return run(lang, code, explicit, callback);
+    }
     xhr.setRequestHeader( 'Content-Type', 'application/x-www-form-urlencoded' );
     xhr.onreadystatechange = function(e) {
         console.log(xhr.readyState);
@@ -399,7 +403,7 @@ window.onload = function(){
 
 
     //Load languages map
-    if (location.hostname === "www.opencompiler.net"){
+    if (location.hostname === "www.opencompiler.net" || location.hostname === "debug.opencompiler.net" ){
         var xhr = new XMLHttpRequest();
         xhr.open("GET", "languages.json", true);
         xhr.send(null);
